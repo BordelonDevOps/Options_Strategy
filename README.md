@@ -4,7 +4,7 @@
 
 ## 🚀 Overview
 
-This is a professional-grade web application designed for options traders who need powerful strategy analysis tools. Built from the ground up with a focus on user experience, real-time data integration, and comprehensive risk analysis.
+This is a professional-grade web application designed for options traders who need powerful strategy analysis tools. Built from the ground up with a focus on user experience, real-time data integration, and comprehensive risk analysis to democratize infomation shareing for self traders who wish to have an unbiased research and education tool. 
 
 ## ✨ Key Features
 
