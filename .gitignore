@@ -1,0 +1,8 @@
+.benchmarks
+.mypy_cache
+.pytest_cache
+__pycache__
+dist
+run_check
+*.old
+runpdoc.bat
