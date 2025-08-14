@@ -1,270 +1,204 @@
-![OptionLab](optionlab.png)
+# Professional Options Strategy Calculator
 
-# Options Strategy Calculator Web Application
+> A sophisticated web-based options trading analysis platform built with Flask and modern web technologies
 
-A comprehensive web-based options trading strategy calculator built with Flask and the OptionLab Python library. This application provides professional traders and enthusiasts with powerful tools to analyze complex options strategies, visualize profit/loss diagrams, and make informed trading decisions.
+## 🚀 Overview
 
-## 🚀 Features
+This is a professional-grade web application designed for options traders who need powerful strategy analysis tools. Built from the ground up with a focus on user experience, real-time data integration, and comprehensive risk analysis.
 
-### Web Application Features
-- **Interactive Web Interface**: Modern, responsive UI for strategy configuration
-- **Real-time Stock Data**: Integration with Yahoo Finance for live stock prices and volatility
-- **Strategy Visualization**: Dynamic profit/loss charts with customizable parameters
-- **Multiple Strategy Types**: Support for stocks, calls, puts, and complex multi-leg strategies
-- **Preset Strategies**: Quick access to common strategies (Covered Call, Bull Call Spread, Iron Condor, etc.)
-- **Options Chain Data**: Real-time options pricing and Greeks
-- **Stock Charts**: Historical price charts with multiple timeframes
-- **Risk Metrics**: Comprehensive analysis including probability of profit, max profit/loss, breakeven points
+## ✨ Key Features
 
-### OptionLab Library Features
-- **Black-Scholes Pricing**: Accurate options pricing using the Black-Scholes model
-- **Greeks Calculation**: Delta, Gamma, Theta, Vega, and Rho for each strategy leg
-- **Probability Analysis**: Analytical probability of profit calculations
-- **Flexible Strategy Building**: Support for complex multi-leg strategies
-- **Previously Opened Positions**: Include existing positions in new strategies
-- **Custom Price Arrays**: Use alternative pricing models beyond Black-Scholes
+### 🎯 **Interactive Strategy Builder**
+- Drag-and-drop interface for building complex options strategies
+- Support for stocks, calls, and puts with unlimited combinations
+- Real-time validation and error handling
+- Professional-grade UI with gradient designs and smooth animations
 
-## 📋 Requirements
+### 📊 **Advanced Analytics**
+- Probability of profit calculations
+- Maximum profit/loss analysis
+- Expected profit/loss projections
+- Strategy cost analysis
+- Profit range identification
 
-- Python 3.10+
-- Flask
-- OptionLab library
-- yfinance (for real-time data)
-- matplotlib (for chart generation)
-- pandas, numpy, scipy
-- Other dependencies listed in `pyproject.toml`
+### 📈 **Real-Time Market Data**
+- Live stock price feeds via Yahoo Finance API
+- Historical volatility calculations
+- Options chain data with bid/ask spreads
+- Interactive stock price charts
+- Company information and market metrics
 
-## 🛠️ Installation
+### 🎨 **Modern Web Interface**
+- Responsive design that works on all devices
+- Professional gradient color schemes
+- Smooth animations and transitions
+- Bootstrap 5 integration
+- Font Awesome icons
+- Custom CSS with modern design patterns
 
-### Option 1: Using Poetry (Recommended)
+## 🛠️ Technology Stack
+
+- **Backend**: Flask (Python)
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Styling**: Bootstrap 5, Custom CSS with CSS Variables
+- **Charts**: Matplotlib with base64 encoding
+- **Data**: Yahoo Finance API, Pandas, NumPy
+- **Icons**: Font Awesome 6
+- **Fonts**: Google Fonts (Inter)
+
+## 📦 Installation
+
+### Prerequisites
+- Python 3.8+
+- pip or Poetry
+
+### Quick Start
 
 ```bash
 # Clone the repository
 git clone https://github.com/BordelonDevOps/Options_Strategy.git
 cd Options_Strategy
 
-# Install dependencies using Poetry
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python app.py
+```
+
+The application will be available at `http://localhost:9100`
+
+### Using Poetry (Recommended)
+
+```bash
+# Install dependencies with Poetry
 poetry install
 
-# Activate the virtual environment
+# Activate virtual environment
 poetry shell
 
 # Run the application
 python app.py
 ```
 
-### Option 2: Using pip
-
-```bash
-# Clone the repository
-git clone https://github.com/BordelonDevOps/Options_Strategy.git
-cd Options_Strategy
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install flask optionlab yfinance matplotlib pandas numpy scipy pydantic holidays
-
-# Run the application
-python app.py
-```
-
-## 🚀 Usage
-
-### Starting the Application
-
-```bash
-python app.py
-```
-
-The application will start on `http://localhost:9100`
+## 🎮 Usage
 
 ### Web Interface
-
-1. **Stock Data Input**:
-   - Enter a stock ticker symbol
-   - The application will automatically fetch current price and volatility
-   - View historical stock charts
-
-2. **Strategy Configuration**:
-   - Add multiple strategy legs (stocks, calls, puts)
-   - Configure strike prices, premiums, quantities, and actions
-   - Set target dates and risk parameters
-
-3. **Analysis**:
-   - Click "Calculate Strategy" to generate analysis
-   - View profit/loss diagram
-   - Review key metrics and risk parameters
+1. Open your browser to `http://localhost:9100`
+2. Enter stock ticker and basic parameters
+3. Add strategy legs (stocks, calls, puts)
+4. Click "Calculate Strategy" to see results
+5. View profit/loss diagram and key metrics
 
 ### API Endpoints
 
-- `GET /` - Main web interface
-- `POST /calculate` - Calculate strategy metrics
-- `GET /preset/<strategy_name>` - Get preset strategy configurations
-- `GET /api/stock/<ticker>` - Get real-time stock data
-- `GET /api/stock/<ticker>/chart` - Get stock price charts
-- `GET /api/options/<ticker>` - Get options chain data
+#### Strategy Calculation
+```http
+POST /calculate
+Content-Type: application/json
+
+{
+  "stock_ticker": "AAPL",
+  "stock_price": 150.00,
+  "volatility": 0.25,
+  "interest_rate": 0.05,
+  "start_date": "2024-01-01",
+  "target_date": "2024-02-01",
+  "strategy": [
+    {
+      "type": "call",
+      "strike": 155.0,
+      "premium": 3.50,
+      "n": 1,
+      "action": "buy"
+    }
+  ]
+}
+```
+
+#### Real-Time Stock Data
+```http
+GET /api/stock/{ticker}
+```
+
+#### Stock Charts
+```http
+GET /api/stock/{ticker}/chart?period=3mo
+```
+
+#### Options Chain Data
+```http
+GET /api/options/{ticker}
+```
+
+## 🎨 Design Philosophy
+
+This application was built with a focus on:
+
+- **Professional Aesthetics**: Modern gradient designs and clean typography
+- **User Experience**: Intuitive interface with helpful validation messages
+- **Performance**: Optimized API calls and efficient data processing
+- **Reliability**: Comprehensive error handling and timeout protection
+- **Scalability**: Modular code structure for easy expansion
+
+## 🔧 Configuration
+
+### Environment Variables
+- `FLASK_ENV`: Set to `development` for debug mode
+- `PORT`: Custom port (default: 9100)
+- `HOST`: Custom host (default: 0.0.0.0)
+
+### Customization
+- Modify CSS variables in `templates/index.html` for color schemes
+- Adjust chart styling in the matplotlib configuration
+- Update API endpoints in `app.py` for additional features
 
 ## 📊 Supported Strategies
 
-### Basic Strategies
-- **Long/Short Stock**: Direct equity positions
-- **Long/Short Calls**: Basic call option strategies
-- **Long/Short Puts**: Basic put option strategies
+- **Basic Positions**: Long/Short Stock, Long/Short Calls/Puts
+- **Spreads**: Bull/Bear Call/Put Spreads
+- **Straddles & Strangles**: Long/Short variations
+- **Complex Strategies**: Iron Condors, Butterflies, Custom combinations
 
-### Spread Strategies
-- **Bull Call Spread**: Buy lower strike call, sell higher strike call
-- **Bear Put Spread**: Buy higher strike put, sell lower strike put
-- **Calendar Spreads**: Same strike, different expirations
+## 🚀 Deployment
 
-### Income Strategies
-- **Covered Call**: Own stock + sell call
-- **Cash-Secured Put**: Sell put with cash backing
-- **Iron Condor**: Sell call spread + sell put spread
-
-### Protection Strategies
-- **Protective Put**: Own stock + buy put
-- **Collar**: Own stock + buy put + sell call
-
-### Volatility Strategies
-- **Long Straddle**: Buy call + buy put (same strike)
-- **Short Straddle**: Sell call + sell put (same strike)
-- **Strangle**: Buy/sell call and put (different strikes)
-
-## 🧮 Key Metrics Calculated
-
-- **Probability of Profit (PoP)**: Likelihood of profitable outcome
-- **Maximum Profit**: Highest possible return
-- **Maximum Loss**: Worst-case scenario loss
-- **Breakeven Points**: Stock prices where strategy breaks even
-- **Expected Profit/Loss**: Probability-weighted outcomes
-- **Strategy Cost**: Net debit or credit
-- **Profit Ranges**: Price ranges where strategy is profitable
-- **Greeks**: Risk sensitivities (Delta, Gamma, Theta, Vega, Rho)
-
-## 🏗️ Project Structure
-
-```
-Options_Strategy/
-├── app.py                 # Flask web application
-├── templates/
-│   └── index.html        # Main web interface
-├── optionlab/            # Core options calculation library
-│   ├── __init__.py
-│   ├── engine.py         # Main calculation engine
-│   ├── models.py         # Data models and types
-│   ├── black_scholes.py  # Black-Scholes implementation
-│   ├── plot.py           # Plotting utilities
-│   ├── support.py        # Support functions
-│   └── utils.py          # Utility functions
-├── examples/             # Jupyter notebook examples
-├── tests/                # Unit tests
-├── docs/                 # API documentation
-├── pyproject.toml        # Project configuration
-└── README.md            # This file
-```
-
-## 🧪 Testing
-
-Run the test suite:
-
+### Local Development
 ```bash
-# Using Poetry
-poetry run pytest
-
-# Using pip
-pytest
+python app.py
 ```
 
-Run specific test categories:
-
+### Production Deployment
 ```bash
-pytest tests/test_core.py      # Core functionality tests
-pytest tests/test_models.py    # Data model tests
-pytest tests/test_misc.py      # Miscellaneous tests
+# Using Gunicorn
+gunicorn -w 4 -b 0.0.0.0:9100 app:app
+
+# Using Docker
+docker build -t options-calculator .
+docker run -p 9100:9100 options-calculator
 ```
 
-## 📚 Examples
-
-The `examples/` directory contains Jupyter notebooks demonstrating various strategies:
-
-- `black_scholes_calculator.ipynb` - Basic Black-Scholes calculations
-- `covered_call.ipynb` - Covered call strategy example
-- `call_spread.ipynb` - Bull call spread example
-- `calendar_spread.ipynb` - Calendar spread strategy
-- `naked_call.ipynb` - Short call strategy
-
-## 🔧 Development
-
-### Setting up Development Environment
-
-```bash
-# Install development dependencies
-poetry install --with dev
-
-# Install pre-commit hooks
-pre-commit install
-
-# Run code formatting
-black .
-
-# Run linting
-ruff check .
-
-# Run type checking
-mypy optionlab/
-```
-
-### Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests and ensure code quality
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
-6. Push to the branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📖 API Documentation
+## 📝 License
 
-Detailed API documentation is available in the `docs/` directory and can be accessed at the [project's GitHub Pages site](https://rgaveiga.github.io/optionlab).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ⚠️ Disclaimer
 
-**Important**: This software is provided for educational and research purposes only. 
+This software is for educational and informational purposes only. It should not be considered as financial advice. Options trading involves substantial risk and is not suitable for all investors. Always consult with a qualified financial advisor before making investment decisions.
 
-- The author makes no guarantee that results are accurate
-- The author is not responsible for any losses caused by the use of this code
-- Options trading involves significant risk and requires due diligence
-- Always consult with a qualified financial advisor before making trading decisions
-- Past performance does not guarantee future results
+## 📞 Support
 
-## 📄 License
-
-This project is licensed under the terms specified in the LICENSE file.
-
-## 🤝 Support
-
-If you have questions, corrections, comments, or suggestions:
-
-- Open an issue on GitHub
-- Contact: [roberto.veiga@ufabc.edu.br](mailto:roberto.veiga@ufabc.edu.br)
-- LinkedIn: [Roberto Gomes, PhD](https://www.linkedin.com/in/roberto-gomes-phd-8a718317b/)
-- Twitter/X: [@rgaveiga](https://x.com/rgaveiga)
-- Medium: [@rgaveiga](https://medium.com/@rgaveiga)
-
-## 💝 Sponsorship
-
-If you find this project useful and want to support its development, consider becoming a [sponsor on GitHub](https://github.com/sponsors/rgaveiga).
-
-## 🏷️ Version
-
-Current version: 1.4.3
-
-See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
+For questions, issues, or feature requests:
+- Create an issue on GitHub
+- Contact: [Your Contact Information]
 
 ---
 
-**Built with ❤️ using Python, Flask, and the OptionLab library**
+**Built with ❤️ for the trading community**
